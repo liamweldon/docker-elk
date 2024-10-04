@@ -20,14 +20,14 @@ setup.template.settings.index.mapping.total_fields.limit: 10200
 
 metricbeat.modules:
 - module: elasticsearch
-  hosts: [ http://elasticsearch:9200 ]
+  hosts: [ http://elasticsearch:9201 ]
   username: monitoring_internal
   password: ${MONITORING_INTERNAL_PASSWORD}
   xpack.enabled: true
   period: 10s
   enabled: true
 - module: logstash
-  hosts: [ http://logstash:9600 ]
+  hosts: [ http://logstash:9601 ]
   xpack.enabled: true
   period: 10s
   enabled: true
@@ -62,7 +62,7 @@ monitoring:
     password: ${BEATS_SYSTEM_PASSWORD}
 
 output.elasticsearch:
-  hosts: [ http://elasticsearch:9200 ]
+  hosts: [ http://elasticsearch:9201 ]
   username: metricbeat_internal
   password: ${METRICBEAT_INTERNAL_PASSWORD}
 

@@ -103,7 +103,7 @@ By default, the stack exposes the following ports:
 * 5044: Logstash Beats input
 * 50000: Logstash TCP input
 * 9600: Logstash monitoring API
-* 9200: Elasticsearch HTTP
+* 9201: Elasticsearch HTTP
 * 9300: Elasticsearch TCP transport
 * 5601: Kibana
 
@@ -379,7 +379,7 @@ users][builtin-users]), you can use the Elasticsearch API instead and achieve th
 In the example below, we reset the password of the `elastic` user (notice "/user/elastic" in the URL):
 
 ```sh
-curl -XPOST -D- 'http://localhost:9200/_security/user/elastic/_password' \
+curl -XPOST -D- 'http://localhost:9201/_security/user/elastic/_password' \
     -H 'Content-Type: application/json' \
     -u elastic:<your current elastic password> \
     -d '{"password" : "<your new password>"}'

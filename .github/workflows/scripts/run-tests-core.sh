@@ -16,7 +16,7 @@ ip_ls="$(service_ip logstash)"
 ip_kb="$(service_ip kibana)"
 
 grouplog 'Wait for readiness of Elasticsearch'
-poll_ready "$cid_es" 'http://elasticsearch:9200/' --resolve "elasticsearch:9200:${ip_es}" -u 'elastic:testpasswd'
+poll_ready "$cid_es" 'http://elasticsearch:9201/' --resolve "elasticsearch:9201:${ip_es}" -u 'elastic:testpasswd'
 endgroup
 
 grouplog 'Wait for readiness of Logstash'
@@ -50,8 +50,8 @@ fi
 # need to be resilient here.
 was_retried=0
 declare -a refresh_args=( '-X' 'POST' '-s' '-w' '%{http_code}' '-u' 'elastic:testpasswd'
-	'http://elasticsearch:9200/logs-generic-default/_refresh'
-	'--resolve' "elasticsearch:9200:${ip_es}"
+	'http://elasticsearch:9201/logs-generic-default/_refresh'
+	'--resolve' "elasticsearch:9201:${ip_es}"
 )
 
 # retry for max 10s (10*1s)
@@ -76,8 +76,8 @@ log 'Searching message in Elasticsearch'
 # we need to be resilient here too.
 was_retried=0
 declare -a search_args=( '-s' '-u' 'elastic:testpasswd'
-	'http://elasticsearch:9200/logs-generic-default/_search?q=message:dockerelk&pretty'
-	'--resolve' "elasticsearch:9200:${ip_es}"
+	'http://elasticsearch:9201/logs-generic-default/_search?q=message:dockerelk&pretty'
+	'--resolve' "elasticsearch:9201:${ip_es}"
 )
 declare -i count
 declare response
